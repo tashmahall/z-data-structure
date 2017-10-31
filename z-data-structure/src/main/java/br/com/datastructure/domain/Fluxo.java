@@ -27,4 +27,34 @@ public class Fluxo implements Comparable<Fluxo>{
 	public int compareTo(Fluxo arg0) {
 		return this.dia.compareTo(arg0.dia);
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dia == null) ? 0 : dia.hashCode());
+		result = prime * result + ((rodovia == null) ? 0 : rodovia.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Fluxo other = (Fluxo) obj;
+		if (dia == null) {
+			if (other.dia != null)
+				return false;
+		} else if (!dia.equals(other.dia))
+			return false;
+		if (rodovia == null) {
+			if (other.rodovia != null)
+				return false;
+		} else if (!rodovia.equals(other.rodovia))
+			return false;
+		return true;
+	}
+	
 }
