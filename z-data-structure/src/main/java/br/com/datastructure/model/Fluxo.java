@@ -62,7 +62,7 @@ public class Fluxo implements Comparable<Fluxo>{
 		throw new FluxoInexistenteException("Não existe Fluxo para o dia "+dia);
 	}
 	public TotalFluxoDiarioSetor FluxosMaioresQueformula() throws FluxoInexistenteException{
-		Double solForm = calcularFormula();
+		Double solForm = calculaFormula();
 		List<Integer> listTotFluxDiaSet = procuraFluxosMaioresQueResultadoFormula(solForm);
 		try {
 			TotalFluxoDiarioSetor ttFlDiaSet = new TotalFluxoDiarioSetor(this.rodovia.getSetor(), dia, listTotFluxDiaSet);
@@ -81,7 +81,7 @@ public class Fluxo implements Comparable<Fluxo>{
 		}
 		return ttFlDiaSet;
 	}
-	private double calcularFormula(){
+	private double calculaFormula(){
 		Integer flMin = listaQtdFluxo.get(0);
 		Integer flMax = listaQtdFluxo.get(listaQtdFluxo.size()-1);
 		Integer delta = flMax-flMin;
