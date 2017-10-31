@@ -1,4 +1,4 @@
-package br.com.datastructure.services;
+package br.com.datastructure.structure;
 
 import java.lang.reflect.Array;
 import java.util.ArrayDeque;

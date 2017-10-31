@@ -1,10 +1,10 @@
-package br.com.datastructure.domain;
+package br.com.datastructure.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.datastructure.services.AVLTree;
+import br.com.datastructure.structure.AVLTree;
 
 public class Rodovia implements Comparable<Rodovia>{
 	
@@ -23,7 +23,7 @@ public class Rodovia implements Comparable<Rodovia>{
 		this.id = id;
 	}
 	public List<String> getNomes() {
-		return nomes;
+		return nomes.subList(0, nomes.size());
 	}
 	public void setNome(String nome) {
 		this.nomes.add(nome) ;
@@ -38,9 +38,7 @@ public class Rodovia implements Comparable<Rodovia>{
 	public AVLTree<Fluxo> getFluxoDiaTree() {
 		return fluxoDiaTree;
 	}
-	public void setFluxoDiaTree(AVLTree<Fluxo> fluxoDiaTree) {
-		this.fluxoDiaTree = fluxoDiaTree;
-	}
+
 	public Fluxo getFluxoPorData(Date data) {
 		Fluxo fTemp = new Fluxo(this, data);
 		if(this.fluxoDiaTree.contains(fTemp))

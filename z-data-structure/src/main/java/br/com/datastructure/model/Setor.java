@@ -1,9 +1,9 @@
-package br.com.datastructure.domain;
+package br.com.datastructure.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.datastructure.services.AVLTree;
+import br.com.datastructure.structure.AVLTree;
 
 public class Setor implements Comparable<Setor>{
 	private Integer id;
@@ -27,7 +27,7 @@ public class Setor implements Comparable<Setor>{
 	}
 
 	public List<String> getNomes() {
-		return nomes;
+		return nomes.subList(0, nomes.size());
 	}
 
 	public void setNome(String nome) {

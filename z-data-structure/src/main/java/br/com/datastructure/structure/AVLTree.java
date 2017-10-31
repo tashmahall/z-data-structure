@@ -1,4 +1,4 @@
-package br.com.datastructure.services;
+package br.com.datastructure.structure;
 
 import java.util.ArrayList;
 import java.util.List;

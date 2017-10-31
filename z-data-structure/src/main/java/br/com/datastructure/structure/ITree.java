@@ -1,4 +1,4 @@
-package br.com.datastructure.services;
+package br.com.datastructure.structure;
 
 /**
  * A tree can be defined recursively (locally) as a collection of nodes (starting at a root node), 
