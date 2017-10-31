@@ -1,31 +1,30 @@
 package br.com.datastructure.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Fluxo implements Comparable<Fluxo>{
 	private Rodovia rodovia;
 	private Date dia;
-	private Integer qtdFluxo;
-	public Rodovia getRodovia() {
-		return rodovia;
-	}
-	public void setRodovia(Rodovia rodovia) {
-		this.rodovia = rodovia;
+	private List<Integer> listaQtdFluxo = new ArrayList<Integer>();
+	public Fluxo (Rodovia rodovia,Date dia) {
+		this.rodovia=rodovia;
+		this.dia=dia;
 	}
 	public Date getDia() {
 		return dia;
 	}
-	public void setDia(Date dia) {
-		this.dia = dia;
+	
+	public Rodovia getRodovia() {
+		return rodovia;
 	}
-	public Integer getQtdFluxo() {
-		return qtdFluxo;
+	public List<Integer> getListaQtdFluxo() {
+		return listaQtdFluxo;
 	}
-	public void setQtdFluxo(Integer qtdFluxo) {
-		this.qtdFluxo = qtdFluxo;
-	}
-	public int compareTo(Fluxo o) {
-		
-		return this.qtdFluxo-o.qtdFluxo;
+	
+	@Override
+	public int compareTo(Fluxo arg0) {
+		return this.dia.compareTo(arg0.dia);
 	}
 }
