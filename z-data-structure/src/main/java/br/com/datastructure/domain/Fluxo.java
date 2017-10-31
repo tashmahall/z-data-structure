@@ -1,6 +1,7 @@
 package br.com.datastructure.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,14 @@ public class Fluxo implements Comparable<Fluxo>{
 	public Date getDia() {
 		return dia;
 	}
-	
+	public void addQtdFluxo(Integer qtdFluxo){
+		listaQtdFluxo.add(qtdFluxo);
+		Collections.sort(listaQtdFluxo);
+	}
+	public void addListaQtdFluxo(List<Integer> qtdFluxo){
+		listaQtdFluxo.addAll(qtdFluxo);
+		Collections.sort(listaQtdFluxo);
+	}
 	public Rodovia getRodovia() {
 		return rodovia;
 	}
@@ -23,9 +31,15 @@ public class Fluxo implements Comparable<Fluxo>{
 		return listaQtdFluxo;
 	}
 	
-	@Override
 	public int compareTo(Fluxo arg0) {
 		return this.dia.compareTo(arg0.dia);
+	}
+	public double fluxoMedioDia(){
+		int total =0;
+		for(int i : listaQtdFluxo){
+			total = total+i;
+		}
+		return (total/listaQtdFluxo.size());
 	}
 	@Override
 	public int hashCode() {

@@ -34,7 +34,6 @@ public class Setor implements Comparable<Setor>{
 		this.nomes.add(nome);
 	}
 
-		@Override
 	public int compareTo(Setor arg0) {
 		return this.id - arg0.id;
 	}

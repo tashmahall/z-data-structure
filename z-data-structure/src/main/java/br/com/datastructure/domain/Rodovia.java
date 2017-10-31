@@ -10,11 +10,10 @@ public class Rodovia implements Comparable<Rodovia>{
 	
 	private Integer id;
 	private List<String> nomes =new ArrayList<String>();
-	private AVLTree<Fluxo> fluxoDiaTree=new AVLTree<>();
+	private AVLTree<Fluxo> fluxoDiaTree=new AVLTree<Fluxo>();
 	private Setor setor;
-	public Rodovia(Integer id, String nome, Setor setor) {
+	public Rodovia(Integer id, Setor setor) {
 		this.id= id;
-		this.nomes.add(nome);
 		this.setor = setor;
 	}
 	public Integer getId() {
@@ -39,14 +38,26 @@ public class Rodovia implements Comparable<Rodovia>{
 	public AVLTree<Fluxo> getFluxoDiaTree() {
 		return fluxoDiaTree;
 	}
-	public Fluxo getFluxoPorData(Date data) {
-//		Fluxo fTemp = new Fluxo(this, data);
-//		if(this.fluxoDiaTree.contains(fTemp))
-//			
-		return null;
-	}
 	public void setFluxoDiaTree(AVLTree<Fluxo> fluxoDiaTree) {
 		this.fluxoDiaTree = fluxoDiaTree;
+	}
+	public Fluxo getFluxoPorData(Date data) {
+		Fluxo fTemp = new Fluxo(this, data);
+		if(this.fluxoDiaTree.contains(fTemp))
+			for(Fluxo f: fluxoDiaTree.getBFS()){
+				if(data.equals(f.getDia()))
+					return f;
+			}
+		return null;
+	}
+	public void addFluxo(Fluxo f){
+		if(this.fluxoDiaTree.contains(f)){
+			//Adiciona uma lista de QtdFluxo a um Fluxo Diário caso já exista o dia informado na arvore
+			this.getFluxoPorData(f.getDia()).addListaQtdFluxo(f.getListaQtdFluxo());;
+		}else{
+			//Adiciona um Fluxo diário caso o dia não exista na arvore
+			fluxoDiaTree.add(f);	
+		}
 	}
 	@Override
 	public int hashCode() {
