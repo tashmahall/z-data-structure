@@ -1,7 +1,6 @@
 package br.com.datastructure.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.com.datastructure.structure.AVLTree;
