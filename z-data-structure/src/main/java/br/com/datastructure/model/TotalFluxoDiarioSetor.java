@@ -39,5 +39,7 @@ public class TotalFluxoDiarioSetor {
 	public List<Integer> getQtdFluxoMaiorQueFormula() {
 		return qtdFluxoMaiorQueFormula.subList(0, qtdFluxoMaiorQueFormula.size());
 	}
+//	System.out.println("Fluxo maiores que a fórmula: min(fluxo)+0.8x(max(fluxo)-min(fluxo)):");
+//	for( Interger i2: fTemp.FluxosMaioresQueformula())
 	
 }

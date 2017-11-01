@@ -44,7 +44,7 @@ public class Fluxo implements Comparable<Fluxo>{
 	public int compareTo(Fluxo arg0) {
 		return this.dia.compareTo(arg0.dia);
 	}
-	public double fluxoMedioDia(){
+	public double getFluxoMedioDia(){
 		int total =0;
 		for(int i : listaQtdFluxo){
 			total = total+i;

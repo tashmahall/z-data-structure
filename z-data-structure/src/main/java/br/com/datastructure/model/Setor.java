@@ -1,6 +1,7 @@
 package br.com.datastructure.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.datastructure.structure.AVLTree;
@@ -23,7 +24,15 @@ public class Setor implements Comparable<Setor>{
 	public void setRodovia(Rodovia rodovia) {
 		this.rodoviasTree.add(rodovia);
 	}
-
+	public Rodovia getRodoviaPorID(Integer Id) {
+		Rodovia rTemp = new Rodovia(id, this);
+		if(this.rodoviasTree.contains(rTemp))
+			for(Rodovia r: rodoviasTree.getBFS()){
+				if(r.equals(rTemp))
+					return r;
+			}
+		return null;
+	}
 	public Integer getId() {
 		return id;
 	}
