@@ -9,8 +9,10 @@ public class Setor implements Comparable<Setor>{
 	private Integer id;
 	private List<String> nomes =new ArrayList<String>();
 	private AVLTree<Rodovia> rodoviasTree =new AVLTree<Rodovia>();
-	public Setor(Integer id, String nome) {
+	public Setor(Integer id) {
 		this.id = id;
+	}
+	public void addNome(String nome) {
 		this.nomes.add(nome);
 	}
 	
