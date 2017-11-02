@@ -21,15 +21,16 @@ public class FluxoActionsView {
 	public void cadastrarFluxo(){
 		Scanner entradaFluxo = new Scanner (System.in);
 		try{
-			Setor sTemp =null;
+			Setor sTemp;
 			boolean erro;
 			do{
+				sTemp =null;
 				erro=false;
-				System.out.print("Informe o ID de um novo Setor ou 0 para retornar ao menu anterior: ");
 				Integer idSetor = null;
+				System.out.print("Informe o ID de um novo Setor ou 0 para retornar ao menu anterior: ");
 				try{
 					idSetor = Integer.parseInt(entradaFluxo.nextLine());
-					if(idSetor.equals(0))
+					if(idSetor!= null&&idSetor.equals(0))
 						throw new RetornarMenuAnteriorException();
 					sTemp = setorTree.getSetor(idSetor);
 				}catch(NumberFormatException e) {
