@@ -3,6 +3,7 @@ package br.com.datastructure.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.datastructure.model.exceptions.FluxoInexistenteException;
 import br.com.datastructure.structure.AVLTree;
 
 public class Setor implements Comparable<Setor>{
@@ -46,6 +47,17 @@ public class Setor implements Comparable<Setor>{
 
 	public int compareTo(Setor arg0) {
 		return this.id - arg0.id;
+	}
+	public List<TotalFluxoDiarioSetor> getFLuxosMaioresQueFormula() throws FluxoInexistenteException{
+		List<TotalFluxoDiarioSetor> ltfds = new ArrayList<TotalFluxoDiarioSetor>();
+		Rodovia[] rodovias = this.rodoviasTree.getLevelOrder();
+		for(Rodovia rTemp:rodovias) {
+			Fluxo[] fluxos = rTemp.getFluxoDiaTree().getSorted();
+			for(Fluxo f: fluxos) {
+				ltfds.add(f.FluxosMaioresQueformula());
+			}
+		}
+		return ltfds;
 	}
 
 		@Override

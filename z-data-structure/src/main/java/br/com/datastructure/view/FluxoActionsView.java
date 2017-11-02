@@ -22,21 +22,35 @@ public class FluxoActionsView {
 		Scanner entradaFluxo = new Scanner (System.in);
 		try{
 			Setor sTemp =null;
+			boolean erro;
 			do{
+				erro=false;
 				System.out.print("Informe o ID de um novo Setor ou 0 para retornar ao menu anterior: ");
-				Integer idSetor = Integer.parseInt(entradaFluxo.nextLine());
-				if(idSetor.equals(0))
-					throw new RetornarMenuAnteriorException();
-				sTemp = setorTree.getSetor(idSetor);
-			}while(sTemp==null);
+				Integer idSetor = null;
+				try{
+					idSetor = Integer.parseInt(entradaFluxo.nextLine());
+					if(idSetor.equals(0))
+						throw new RetornarMenuAnteriorException();
+					sTemp = setorTree.getSetor(idSetor);
+				}catch(NumberFormatException e) {
+					System.out.println("O ID informado é inválido.");
+					erro=true;
+					}
+			}while(erro||sTemp==null);
 			Rodovia rTemp=null;
 			do{
+				erro=false;
 				System.out.print("Informe o ID da Rodovia ou 0 para retornar ao menu anterior: ");
-				Integer idRodovia = Integer.parseInt(entradaFluxo.nextLine());
-				if(idRodovia.equals(0))
-					throw new RetornarMenuAnteriorException();
-				rTemp=sTemp.getRodoviaPorID(idRodovia);
-			}while(rTemp==null);
+				Integer idRodovia = null;
+				try{ 
+					idRodovia= Integer.parseInt(entradaFluxo.nextLine());
+					if(idRodovia.equals(0))
+						throw new RetornarMenuAnteriorException();
+					rTemp=sTemp.getRodoviaPorID(idRodovia);
+				}catch(NumberFormatException e) {
+					System.out.println("O ID informado é inválido.");
+					erro=true;}
+			}while(erro||rTemp==null);
 			Date dataFluxo = null;
 			do{
 				System.out.print("Informe o dia do Fluxo no padrão dd/MM/yyyy: ");
@@ -58,18 +72,43 @@ public class FluxoActionsView {
 	}
 	public void listarFluxos(){
 		Scanner entradaFluxo = new Scanner (System.in);
-		System.out.print("Informe o ID do Setor: ");
-		Integer idSetor = Integer.parseInt(entradaFluxo.nextLine());
-		System.out.print("Informe o ID da Rodovia: ");
-		Setor sTemp=null;
-		Rodovia rTemp=null;
-		Integer idRodovia = Integer.parseInt(entradaFluxo.nextLine());
-		System.out.println("A Rodovia ID ["+rTemp.getId()+"] do setor ["+sTemp.getId()+"] possui os seguintes Fluxos:");
-		Fluxo[] arrayFluxoTemp = rTemp.getFluxoDiaTree().getSorted();
-		for(Fluxo fTemp: arrayFluxoTemp){
-			descreverFuxo(fTemp);
-		}
-		entradaFluxo.reset();
+		try{
+			Setor sTemp =null;
+			boolean erro;
+			do{
+				erro=false;
+				System.out.print("Informe o ID do Setor ou 0 para retornar ao menu anterior: ");
+				Integer idSetor = null;
+				try{
+					idSetor = Integer.parseInt(entradaFluxo.nextLine());
+					if(idSetor.equals(0))
+						throw new RetornarMenuAnteriorException();
+					sTemp = setorTree.getSetor(idSetor);
+				}catch(NumberFormatException e) {
+					System.out.println("O ID informado é inválido.");
+					erro=true;
+				}
+			}while(erro||sTemp==null);
+			Rodovia rTemp=null;
+			do{
+				erro=false;
+				System.out.print("Informe o ID da Rodovia ou 0 para retornar ao menu anterior: ");
+				Integer idRodovia = null;
+				try{ 
+					idRodovia= Integer.parseInt(entradaFluxo.nextLine());
+					if(idRodovia.equals(0))
+						throw new RetornarMenuAnteriorException();
+					rTemp=sTemp.getRodoviaPorID(idRodovia);
+				}catch(NumberFormatException e) {
+					System.out.println("O ID informado é inválido.");
+					erro=true;}
+			}while(rTemp==null);
+			System.out.println("A Rodovia ID ["+rTemp.getId()+"] do setor ["+sTemp.getId()+"] possui os seguintes Fluxos:");
+			Fluxo[] arrayFluxoTemp = rTemp.getFluxoDiaTree().getSorted();
+			for(Fluxo fTemp: arrayFluxoTemp)
+				descreverFuxo(fTemp);
+		}catch(RetornarMenuAnteriorException se){}
+		finally{entradaFluxo.reset();}
 	}
 	private void descreverFuxo(Fluxo fTemp){
 		String data = sdf.format(fTemp.getDia());

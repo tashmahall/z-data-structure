@@ -1,42 +1,52 @@
 package br.com.datastructure.view;
 
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-import br.com.datastructure.model.Fluxo;
 import br.com.datastructure.model.Rodovia;
 import br.com.datastructure.model.Setor;
 import br.com.datastructure.model.SetorTree;
-import br.com.datastructure.model.exceptions.FluxoInexistenteException;
 import br.com.datastructure.view.exceptions.RetornarMenuAnteriorException;
 
 
 
 public class RodoviaActionsView {
-	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private SetorTree setorTree = SetorTree.getInstancia();
 
 	public void cadastrarRodovia(){
 		Scanner entradaFluxo = new Scanner (System.in);
 		try{
 			Setor sTemp =null;
+			boolean erro;
 			do{
+				erro=false;
 				System.out.print("Informe o ID do Setor da nova Rodovia ou 0 para retornar ao menu anterior: ");
-				Integer idSetor = Integer.parseInt(entradaFluxo.nextLine());
-				if(idSetor.equals(0))
-					throw new RetornarMenuAnteriorException();
-				sTemp = setorTree.getSetor(idSetor);
-			}while(sTemp==null);
+				Integer idSetor=null;
+				try{ 
+					idSetor= Integer.parseInt(entradaFluxo.nextLine());
+					if(idSetor!=null&&idSetor.equals(0))
+						throw new RetornarMenuAnteriorException();
+					sTemp = setorTree.getSetor(idSetor);
+				}catch(NumberFormatException e) {
+					System.out.println("O ID informado é inválido.");
+					erro=true;
+				}
+			}while(erro||sTemp==null);
 			Rodovia rTemp=null;
 			Integer idRodovia = null;
 			do{
+				erro=false;
 				rTemp=null;
 				System.out.print("Informe o ID da nova Rodovia ou 0 para retornar ao menu anterior: ");
-				idRodovia = Integer.parseInt(entradaFluxo.nextLine());
-				if(idRodovia.equals(0))
-					throw new RetornarMenuAnteriorException();
-				rTemp=sTemp.getRodoviaPorID(idRodovia);
-			}while(rTemp!=null);
+				try{
+					idRodovia = Integer.parseInt(entradaFluxo.nextLine());
+					if(idRodovia!=null&&idRodovia.equals(0))
+						throw new RetornarMenuAnteriorException();
+					rTemp=sTemp.getRodoviaPorID(idRodovia);
+				}catch(NumberFormatException e) {
+					System.out.println("O ID informado é inválido.");
+					erro=true;
+				}
+			}while(erro||rTemp!=null);
 			System.out.print("Informe um nome para a nova Rodovia: ");
 			String nome = entradaFluxo.nextLine();
 			rTemp = new Rodovia(idRodovia,sTemp);
@@ -50,13 +60,21 @@ public class RodoviaActionsView {
 		Scanner entradaFluxo = new Scanner (System.in);
 		try{
 			Setor sTemp =null;
+			boolean erro;
 			do{
+				erro=false;
 				System.out.print("Informe o ID do Setor da nova Rodovia ou 0 para retornar ao menu anterior: ");
-				Integer idSetor = Integer.parseInt(entradaFluxo.nextLine());
-				if(idSetor.equals(0))
-					throw new RetornarMenuAnteriorException();
-				sTemp = setorTree.getSetor(idSetor);
-			}while(sTemp==null);
+				Integer idSetor=null;
+				try{
+					idSetor = Integer.parseInt(entradaFluxo.nextLine());
+					if(idSetor!=null&&idSetor.equals(0))
+						throw new RetornarMenuAnteriorException();
+					sTemp = setorTree.getSetor(idSetor);
+				}catch(NumberFormatException e) {
+					System.out.println("O ID informado é inválido.");
+					erro=true;
+				}
+			}while(erro||sTemp==null);
 			System.out.println("Os setores cadastrados são: ");
 			Rodovia[] arrayRodoviaTemp = sTemp.getRodoviasTree().getSorted();
 			for(Rodovia rTemp: arrayRodoviaTemp){

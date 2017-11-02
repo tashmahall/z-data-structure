@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import br.com.datastructure.controller.exceptions.SaidaException;
 import br.com.datastructure.view.FluxoActionsView;
+import br.com.datastructure.view.RodoviaActionsView;
 import br.com.datastructure.view.SetorActionsView;
 
 public class DataStructureMain {
@@ -63,7 +64,7 @@ public class DataStructureMain {
 		new SetorActionsView().cadastrarSetor();
 	}
 	public static void cadastrarRodovia(){
-		
+		new RodoviaActionsView().cadastrarRodovia();
 	}
 	public static void cadastrarFluxo(){
 		new FluxoActionsView().cadastrarFluxo();
@@ -72,13 +73,13 @@ public class DataStructureMain {
 		new SetorActionsView().listarSetoresCadastrados();
 	}
 	public static void listarRodovia(){
-		
+		new RodoviaActionsView().listarRodovia();
 	}
 	public static void listarFluxo(){
 		new FluxoActionsView().listarFluxos();
 	}
 	public static void listarFluxosFormula(){
-		
+		new SetorActionsView().listarFluxosFormula();
 	}
 	
 
