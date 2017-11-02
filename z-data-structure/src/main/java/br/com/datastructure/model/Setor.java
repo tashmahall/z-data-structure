@@ -24,11 +24,11 @@ public class Setor implements Comparable<Setor>{
 	public void setRodovia(Rodovia rodovia) {
 		this.rodoviasTree.add(rodovia);
 	}
-	public Rodovia getRodoviaPorID(Integer Id) {
+	public Rodovia getRodoviaPorID(Integer id) {
 		Rodovia rTemp = new Rodovia(id, this);
 		if(this.rodoviasTree.contains(rTemp))
 			for(Rodovia r: rodoviasTree.getBFS()){
-				if(r.equals(rTemp))
+				if(rTemp.equals(r))
 					return r;
 			}
 		return null;
