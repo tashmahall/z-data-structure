@@ -15,12 +15,13 @@ public class RodoviaActionsView {
 	public void cadastrarRodovia(){
 		Scanner entradaFluxo = new Scanner (System.in);
 		try{
-			Setor sTemp =null;
+			Setor sTemp;
 			boolean erro;
 			do{
+				sTemp=null;
 				erro=false;
-				System.out.print("Informe o ID do Setor da nova Rodovia ou 0 para retornar ao menu anterior: ");
 				Integer idSetor=null;
+				System.out.print("Informe o ID do Setor da nova Rodovia ou 0 para retornar ao menu anterior: ");
 				try{ 
 					idSetor= Integer.parseInt(entradaFluxo.nextLine());
 					if(idSetor!=null&&idSetor.equals(0))
